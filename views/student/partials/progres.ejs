@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Progress</title>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div id="testes" class=".col s12">
+            <div class="row">
+                <ul class="collection">
+                    <% for(let test of tests) { %>
+                    <li class="collection-item"><%= test.name %></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div id="lessons" class="col s12">
+            <div class="row">
+                <ul class="collection">
+                    <% for(let lesson of lessons) { %>
+                    <li class="collection-item"><%= lesson.name %></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="row">
+                <div class="progress">
+                    <div class="determinate" style="width: 70%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

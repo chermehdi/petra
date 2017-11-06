@@ -1,0 +1,52 @@
+<div class="row">
+    <h3 class="teal-text" style="font-weight: 300;"> Liste des Etudiant </h3>
+    <div class="divider"></div>
+    <% if (students.length == 0) { %>
+    <div class="col s4 offset-s4">
+        <h2 class="center banner">No Students added yet !</h2>
+        <div class="row">
+            <div class="col s12">
+                <p class="center instruction"> you might want to check the requests panel :p </p>
+            </div>
+        </div>
+    </div>
+    <% } else  { %>
+    <div class="col s10 offset-s1 mg-top">
+        <ul class="collapsible" data-collapsible="accordion">
+            <% students.forEach(function(student) { %>
+            <li>
+                <div class="collapsible-header"><%= student.firstName + ' ' + student.lastName %></div>
+                <div class="collapsible-body">
+                    <div class="wrapper">
+                        <div class="flex-layout">
+                            <div class="image">
+                                <img src="images/<%= student.image %>" alt="" class="rounded" width="100" height="100">
+                            </div>
+                            <div class="infos">
+                                <span class="titre teal-text">Cne &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span> <%= student.cne %>
+                                <br>
+                                <span class="titre teal-text">Email &nbsp;: </span> <%= student.email %> <br>
+                                <span class="titre teal-text">Phone : </span> <%= student.phone %> <br> <br>
+                                <span class="titre teal-text">
+                                    Progress
+                                </span>
+                                <div class="progress">
+                                    <div class="determinate" style="width: <%= student.progress %>%"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="del">
+                            <a href="#"  data-name="<%= student.firstName + ' ' + student.lastName %>" class="delete"><i class="material-icons">delete</i> </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+    <% } %>
+    <!-- to be deleted -->
+
+
+</div>

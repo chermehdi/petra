@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/palette.css">
+    <link rel="stylesheet" href="css/profile.css">
+
+    <style>
+        /*****************************************************
+                        Global Styles for index
+        ******************************************************/
+
+        .carousel {
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        .card-image {
+            transition: height 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .card-container {
+            margin-top: 75px;
+        }
+
+        .card-image:hover {
+        }
+
+        .dropdown-content {
+            background-color: #FFFFFF;
+            display: none;
+            min-width: 300px; /* Changed this to accomodate content width */
+            /* Add this to keep dropdown in line with edge of navbar */
+            margin: 0 0 0 -1px;
+            overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
+            opacity: 0;
+            position: absolute;
+            white-space: nowrap;
+            z-index: 1;
+            will-change: width, height;
+        }
+
+        nav {
+            background-color: #119B8A;
+        }
+
+        .tabs .indicator {
+            background-color: #119B8A;
+        }
+
+        .container {
+            width: 90% !important;
+        }
+
+        .tabs .tab a, .tabs .tab a.active {
+            color: #119B8A;
+        }
+
+        /*****************************************************
+                        Progress Style stuff
+        ******************************************************/
+
+        svg {
+            transition: all 1s linear;
+        }
+
+        #progress .progress-icon {
+            padding: 20px;
+            flex: 2;
+        }
+
+        #progress .card-container {
+            display: flex;
+            align-items: center;
+            min-height: 400px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        #progress .card-container:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        #progress .collection {
+            height: 100%;
+            min-width: 250px;
+            border-radius: 20px;
+        }
+
+        #progress .card-container .collection.with-header {
+            flex: 1;
+        }
+
+        #progression-num {
+            color: #119B8A;
+            font-weight: 400;
+            font-size: 0.9em;
+        }
+
+        #progress .none {
+            height: 100%;
+            font-size: 1.1em;
+            color: #7a7a7a;
+            font-family: Roboto;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h3#pr-header {
+            margin-bottom: 50px;
+            font-weight: 200;
+        }
+
+    </style>
+</head>
+
+<body>
+<header id="header">
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="/student" class="brand-logo"> Petra </a>
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/student/chat">Chat <i class="material-icons left"> chat</i></a></li>
+                <li>
+                    <a href="#" class="dropdown-button" data-beloworigin="true" id="username"
+                       data-activates="dropdown"><%= name %>&nbsp;<i
+                                class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+            <ul id="dropdown" class="dropdown-content">
+                <li><a href="/student/profile"> <i class="material-icons">person</i> Profile </a></li>
+                <li><a href="/student/disconnect"> <i class="material-icons">power_settings_new</i> Deconnexion </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <% if(page === 'partials/details') { %>
+    <!-- student details part -->
+    <%- include partials/details %>
+    <% } else { %>
+    <!-- the main content page start -->
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s4"><a class="active" href="#lessons"> Lessons </a></li>
+                <li class="tab col s4"><a href="#tests">Tests</a></li>
+                <li class="tab col s4"><a href="#progress">Progress</a></li>
+            </ul>
+        </div>
+        <div id="lessons" class="col s12">
+            <div class="row">
+                <% for(let lesson of lessons) { %>
+                <div class="col s3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/3.png" width="250" height="200">
+                            <span class="card-title">
+                                <%= lesson.name %>
+                            </span>
+                        </div>
+                        <div class="card-content">
+                            <p><%= lesson.author %></p>
+                        </div>
+                        <div class="card-action">
+                            <a onclick="sendLessonRequest('<%= lesson.name %>')" target="_blank"
+                               href="<%= lesson.path + '/' + lesson.originalName %>"> View </a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <div id="tests" class="col s12">
+            <div class="row">
+                <% for(let test of tests) { %>
+                <div class="col s3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/3.png" width="250" height="200">
+                            <span class="card-title">
+                                <%= test.name %>
+                    </span>
+                        </div>
+                        <div class="card-content">
+                            <p><%= test.author %></p>
+                        </div>
+                        <div class="card-action">
+                            <a onclick="sendTestRequest('<%= test.name %>')"
+                               href="<%= test.path + '/' + test.originalName %>" target="_blank"> View </a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <div id="progress" class="col s12">
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-container">
+                        <ul class="collection with-header">
+                            <li class="collection-header">
+                                <h4>Tests </h4>
+                            </li>
+                            <li class="collection-item">
+                                <span class="none">still no tests passed</span>
+                            </li>
+                        </ul>
+                        <div class="progress-icon">
+                            <h3 id="pr-header">Your Progression : <span id="progression-num"> <%= progress %>%</span>
+                            </h3>
+                            <div class="progress">
+                                <div class="determinate" id="pr" style="width: <%= progress %>%"></div>
+                            </div>
+                        </div>
+                        <ul class="collection with-header">
+                            <li class="collection-header">
+                                <h4>Lessons</h4>
+                            </li>
+                            <li class="collection-item">
+                                Animals and Insects
+                            </li>
+
+                            <li class="collection-item">
+                                The speed of Light
+                            </li>
+
+                            <li class="collection-item">
+                                Introduction to Algorithms
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+
+<script src="js/jquery.js">
+</script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script src="js/materialize.js"></script>
+<script src="js/getScreenId.js"></script>
+<script src="js/adapter.js"></script>
+<script src="js/screenCast.js"></script>
+<script>
+    $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        }
+    );
+    $(document).ready(() => {
+        $('ul.tabs').tabs({
+            'swipeable': true
+        })
+    })
+</script>
+<script>
+    let progresBar = document.getElementById('pr');
+    let progressNum = document.getElementById('progression-num');
+
+    function sendLessonRequest(lessonName) {
+        setTimeout(function () {
+            xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let p = JSON.parse(xhr.response);
+                    progresBar.style = "width :" + p.progression + "%";
+                    progressNum.textContent = p.progression + '%';
+                    console.log(p.progression);
+                }
+            }
+            xhr.open('GET', '/student/increment/lessons/' + lessonName, true);
+            xhr.send(null);
+        }, 30000)
+    }
+    function sendTestRequest(testName) {
+        setTimeout(function () {
+            xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let p = JSON.parse(xhr.response);
+                    progresBar.style = "width :" + p.progression + "%";
+                    progressNum.textContent = p.progression + '%';
+                }
+            }
+            xhr.open('GET', '/student/increment/tests/' + testName, true);
+            xhr.send(null);
+        }, 30000);
+    }
+</script>
+</body>
+</html>

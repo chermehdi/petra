@@ -1,0 +1,249 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    color: #6c6f73;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #333;
+}
+
+h6 {
+    color: #119b8a;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 0.1rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+.blockquote {
+    font-size: 1.6rem;
+    color: #333;
+    border: none;
+    padding: 0;
+}
+
+.blockquote-footer {
+    margin: 1rem 0 0;
+}
+
+#stage {
+    background: url('../img/background01.jpg') center center no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#stage-caption {
+    font-size: 1.4rem;
+    font-weight: 300;
+    max-width: 60rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#stage-caption h1 {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#stage-caption p {
+    font-style: italic;
+}
+
+.bg-faded {
+    background-color: transparent;
+    color: white;
+}
+
+nav {
+    background-color: transparent;
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    margin-left: 50px;
+}
+
+.btn-success-sup {
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    transition: all 0.3s ease-in;
+    color: black;
+    border-color: #26302C;
+    font-weight: 300;
+    background-color: transparent;
+}
+
+.btn-success-sup:hover {
+    background-color: #119B8A;
+    border-color: #119B8A;
+    color: white;
+    cursor: pointer;
+}
+
+#navbarNavDropdown {
+    margin-right: 100px;
+    margin-top: 10px;
+}
+
+.content {
+    height: 1000px;
+}
+
+#brand {
+    font-size: 1.4em;
+    color: white;
+    margin-left: 50px;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+.feature-one {
+    margin-top: 50px;
+}
+
+.animated .fadeIn {
+    animation-delay: 1s;
+    -webkit-animation-duration: 2.5s;
+    -moz-animation-duration: 2.5s;
+    -o-animation-duration: 2.5s;
+    animation-duration: 2.5s;
+}
+
+.hide {
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+}
+
+.blacked {
+    background-color: #224547;
+    transition: all 0.5s linear;
+}
+
+nav {
+    transition: background-color 0.5s linear;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.card img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+#feature2 {
+    margin-top: 50px;
+    background-color: #4b5257;
+}
+
+#feature2 .whited {
+    background-color: white;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+.feature {
+    margin-top: 80px;
+}
+
+.shadow {
+    -moz-box-shadow: 3px 1px 5px 0px #656565;
+    -webkit-box-shadow: 3px 1px 5px 0px #656565;
+    -o-box-shadow: 3px 1px 5px 0px #434343;
+    box-shadow: 3px 1px 5px 0px #434343;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#434343, Direction=116, Strength=5);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #FAFAFA;
+    animation-delay: 0.8s;
+}
+
+.my-card-image {
+    border: 3px solid #119B8A;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.profession {
+    margin-top: 10px;
+}
+
+.facebook {
+    border: 1px solid blue;
+    border-radius: 50%;
+}
+
+.twitter {
+    background-color: deepskyblue;
+    border-radius: 50%;
+    border: 1px solid deepskyblue;
+    margin-left: 30px;
+}
+
+.whatsapp {
+    background-color: #2ecc71;
+    border: 1px solid #2ecc71;
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.social {
+    margin-top: 10px;
+}
+
+.darken {
+    background-color: #119B8A;
+    padding: 30px;
+}
+
+.name {
+    color: #119B8A;
+}
+
+#aboutText {
+    margin: 40px 0px;
+    font-size: 3em;
+    font-weight: 200;
+    color: white;
+    animation-duration: 1.2s;
+}
+
+.div-shadow {
+    -moz-box-shadow: 0px -2px 3px 0px #656565;
+    -webkit-box-shadow: 0px -2px 3px 0px #656565;
+    -o-box-shadow: 0px -2px 3px 0px #656565;
+    box-shadow: 0px -2px 3px 0px #656565;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=90, Strength=3);
+}
+
+a.nav-link {
+    transition: all 0.4s ease-in;
+}
+
+

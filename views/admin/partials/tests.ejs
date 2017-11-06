@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col s6"><h3 class="lighten">List des tests</h3></div>
+    <div class="col s2 offset-s4">
+        <button class="btn-floating btn-large waves-effect waves-light teal" id="addImage"><i
+                    class="material-icons">add</i>
+        </button>
+    </div>
+</div>
+<hr>
+<div class="row" id="display">
+    <div class="col s8 offset-s2">
+        <h4 class="lighten"> Add a Test </h4>
+        <form action="/admin/create?src=tests" enctype="multipart/form-data" method="post" id="form-in">
+            <div class="input_field">
+                <label for="filename"> Test Name: </label>
+                <input type="text" name="filename" id="filename" placeholder="your file name .">
+            </div>
+            <input type="text" style="display: none;" value="tests" name="type">
+            <div class="input_field">
+                <label for="description"> Description : </label>
+                <textarea class="materialize-textarea" name="description" id="description"
+                          placeholder="test description."></textarea>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s7">
+                    <div class="btn">
+                        <i class="material-icons">file_upload</i>
+                        <span>Zip Test</span>
+                        <input type="file" name="file" id="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload file">
+                    </div>
+                </div>
+                <div class="input-field col s3  offset-s2">
+                    <button type="submit" class="waves-effect waves-light btn">Add Test</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <% if (tests.length === 0) { %>
+    <div class="col s6 offset-s3">
+        <h3 class="center banner">No tests added yet !</h3>
+        <div class="row">
+            <div class="col s12">
+                <p  class="center instruction"> to add tests , please use the add button </p>
+            </div>
+        </div>
+    </div>
+    <% } else { %>
+    <% for (let test of tests) { %>
+    <div class="col s4">
+        <div class="card">
+            <div class="card-image">
+                <a class="btn-floating halfway-fab waves-effect waves-light red delete"><i
+                            class="material-icons" data-name="<%= test.name %>" data-type="tests">remove</i></a>
+                <img src="images/1.png" width="250" height="200">
+                <span class="card-title">
+                                <%= test.name %>
+                    </span>
+            </div>
+            <div class="card-content">
+                <p>
+                    <%= test.author %>
+                </p>
+            </div>
+            <div class="card-action">
+                <a href="<%= test.path + '/' + test.originalName %>" class="teal-text" target="_blank"> View </a>
+            </div>
+        </div>
+    </div>
+    <% } } %>
+</div>
+<!-- to be Deleted -->

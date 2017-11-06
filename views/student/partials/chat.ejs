@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/palette.css">
+    <link rel="stylesheet" href="css/chatClient.css">
+</head>
+<body class="center-content verticaly">
+<div class="container shadow">
+    <div class="row">
+
+        <div id="chat" class="col s12">
+            <div class="container noMarj">
+                <div class="row">
+                    <div class="chat-panel">
+                        <div class="col s12 discussion-panel light-primary-color center-content verticaly dark"
+                             id="messages-panel">
+                            <i class="material-icons" style="font-size: 60px; margin-bottom: 20px;">chat</i>
+                            <h6 class="empty">click on a user to load conversation history </h6>
+                        </div>
+                        <div class="col s12 message-panel default-primary-color divide">
+                            <div class="row">
+                                <div id="pad">
+                                    <div class="input-field col s9">
+                                        <label for="message" style="color: #212121; font-weight: 300;">Enter your
+                                            message :</label>
+                                        <textarea id="usr-input" class="materialize-textarea"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col s3 full-height center-content">
+                                    <button class="btn btn-flat accent-color" style="margin-top: 20px; color: white;"
+                                            id="send">
+                                        <i class="material-icons">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="hidden" value="<%= name %>" id="username">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.js">
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/materialize.js"></script>
+<script>
+    $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        }
+    );
+    $(document).ready(() => {
+        $('ul.tabs').tabs({
+            'swipeable': true
+        })
+    })
+</script>
+<script src="js/chatClient.js"></script>
+</body>
+</html>

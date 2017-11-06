@@ -1,0 +1,45 @@
+.titre {
+    font-weight: 500;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.flex-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.infos {
+    margin-left: 60px;
+}
+
+.del {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.del > i {
+    font-size: 30px;
+}
+
+a.delete {
+    color: red;
+}
+.image>img{
+    border-radius: 50%;
+}
+.collapsible-header {
+    padding: 10px;
+    font-size: 1.2em;
+    text-transform: capitalize;
+}
+.mg-top{
+    margin-top: 10px;
+}

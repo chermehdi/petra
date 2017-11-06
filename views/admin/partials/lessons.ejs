@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col s6"><h3 class="lighten">List des lessons</h3></div>
+    <div class="col s2 offset-s4">
+        <button class="btn-floating btn-large waves-effect waves-light teal" id="addImage"><i
+                    class="material-icons">add</i>
+        </button>
+    </div>
+</div>
+<hr>
+<div class="row" id="display">
+    <div class="col s8 offset-s2">
+        <h4 class="lighten"> Add a Lesson</h4>
+        <form action="/admin/create?src=lessons" enctype="multipart/form-data" method="post" id="form-in">
+            <div class="input_field">
+                <label for="filename"> Test Name: </label>
+                <input type="text" name="filename" id="filename" placeholder="your file name .">
+            </div>
+            <input type="text" style="display: none;" value="lessons" name="type">
+            <div class="input_field">
+                <label for="description"> Description : </label>
+                <textarea class="materialize-textarea" name="description" id="description"
+                          placeholder="test description."></textarea>
+            </div>
+            <div class="row">
+                <div class="file-field input-field col s7">
+                    <div class="btn">
+                        <i class="material-icons">file_upload</i>
+                        <span>Zip Lesson</span>
+                        <input type="file" name="file" id="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload file">
+                    </div>
+                </div>
+                <div class="input-field col s3  offset-s2">
+                    <button type="submit" class="waves-effect waves-light btn">Add Lesson</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <% if (lessons.length === 0) { %>
+    <div class="col s4 offset-s4">
+        <h2 class="text-center">No Lessons added yet !</h2>
+        <div class="row">
+            <div class="col s12">
+                <p id="instruction" class="text-center"> to add lessons , please use the add button </p>
+            </div>
+        </div>
+    </div>
+    <% } else { %>
+    <% for (let lesson of lessons) { %>
+    <div class="col s4">
+        <div class="card">
+            <div class="card-image">
+                <a class="btn-floating halfway-fab waves-effect waves-light red delete"><i
+                            class="material-icons" data-name="<%= lesson.name %>" data-type="lessons">remove</i></a>
+                <img src="images/1.png" width="250" height="200">
+                <span class="card-title">
+                                <%= lesson.name %>
+                    </span>
+            </div>
+            <div class="card-content">
+                <p>
+                    <%= lesson.author %>
+                </p>
+            </div>
+            <div class="card-action">
+                <a href="<%= lesson.path + '/' + lesson.originalName %>" class="teal-text" target="_blank"> View </a>
+            </div>
+        </div>
+    </div>
+    <% } } %>
+</div>
+<!-- to be Deleted -->

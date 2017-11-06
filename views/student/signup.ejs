@@ -1,0 +1,110 @@
+<!--
+
+	************************
+	************************
+
+		Designed and Coded By
+			Chaimae And Mehdi
+
+	************************
+	************************
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Connect</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        #connect {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col s8 offset-s2">
+            <h3 class="center-align teal-text text-lighten-2 titre"> Sign up </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s8 offset-s2">
+            <form role="form" action="/student/signup" method="post" enctype="multipart/form-data"
+                  onsubmit="return isOk();" autocomplete="off">
+                <div class="input-field">
+                    <input id="name" type="text" name="nom" class="validate" required minLength="3" maxlength="20">
+                    <label for="name" data-error="length must be between 3 and 20 .">First Name :</label>
+                </div>
+                <div class="input-field">
+                    <input id="surname" type="text" name="surname" class="validate" required minLength="3"
+                           maxlength="20">
+                    <label for="surname" data-error="length must be between 3 and 20 .">Last Name :</label>
+                </div>
+                <div class="input-field">
+                    <input id="email" type="email" name="email" class="validate" required>
+                    <label for="email" data-error="please specify an email address ."> Email : </label>
+                </div>
+                <div class="input-field">
+                    <input id="cne" type="text" name="cne" class="validate" required>
+                    <label for="cne" data-error="please specify your cne .">CNE :</label>
+                </div>
+                <div class="input-field">
+                    <input id="phone" type="text" name="phone" class="validate">
+                    <label for="phone">Numéro de telephone :</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" type="password" name="password" class="validate">
+                    <label for="password">Password :</label>
+                </div>
+                <div class="input-field">
+                    <input id="password_conf" type="password" name="password_conf" class="validate">
+                    <label for="password_conf" data-error="The confirmation password must match your password .">
+                        Password Confirmation :</label>
+                </div>
+                <div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span> choose a photo </span>
+                            <input type="file" name="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Upload file">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <div class="input-field">
+                            <button type="submit" formmethod="post" id="submit"
+                                    class="waves-effect waves-light btn lighten-2">Submit
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="input-field">
+                            <button type="reset" class="waves-effect waves-light btn orange">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/student.js"></script>
+<script>
+    /*
+     initializing materialize
+     */
+    $(document).ready(function () {
+        $(".button-collapse").sideNav();
+    })
+</script>
+</body>
+</html>

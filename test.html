@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test file </title>
+    <link rel="stylesheet" href="public/css/materialize.css">
+    <style>
+        .student-image svg {
+            width: 150px;
+            height: 150px;
+        }
+
+        .student {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-transition: all 0.3s linear;
+            -moz-transition: all 0.3s linear;
+            -ms-transition: all 0.3s linear;
+            -o-transition: all 0.3s linear;
+            transition: all 0.3s linear;
+        }
+
+        .student:hover {
+            transform: scale(1.15);
+        }
+
+        .student-name {
+            min-height: 40px;
+            font-weight: 300;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        .modal {
+            min-width: 80%;
+        }
+
+       .video-content{
+           height: 100%;
+           width: 100%;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <!-- Modal Structure -->
+        <div id="vid" class="modal">
+            <div class="modal-content">
+                <div class="video-content">
+                    <video id="video" src="video.mp4" width="700px" controls></video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s3">
+            <a href="#vid">
+                <div class="student">
+                    <div class="student-image">
+                        <img src="public/images/pc.svg" alt="">
+                    </div>
+                    <div class="student-name">
+                        Chaimae Ben
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col s3">
+            <a href="#">
+                <div class="student">
+                    <div class="student-image">
+                        <img src="public/images/pc.svg" alt="">
+                    </div>
+                    <div class="student-name">
+                        Chaimae Ben
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<script src="public/js/jquery.js"></script>
+<script src="public/js/materialize.js"></script>
+<script>
+    let video = document.getElementById('vid');
+
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            },
+            complete: function () {
+                console.log('closed ');
+                vid.pause();
+            } // Callback for Modal close
+        }
+    );
+</script>
+</body>
+</html>

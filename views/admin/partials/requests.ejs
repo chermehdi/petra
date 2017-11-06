@@ -1,0 +1,21 @@
+<div class="row">
+    <% if (requests.length == 0) { %>
+    <div class="col s10 offset-s1" style="margin-top: 100px">
+        <h2 class="center" style="font-weight: 300">No Request received  !</h2>
+    </div>
+    <% } else  { %>
+    <ul class="collection with-header">
+        <li class="collection-header"><h4 class="teal-text">Requests :</h4></li>
+        <% requests.forEach(function(request){ %>
+        <li class="collection-item">
+            <div>
+                <span style="font-size: 1.2em"><%= request.fullName %></span>
+                <a class="secondary-content delete" href="#" ><i
+                            class="material-icons" style="color: red;" data-name="<%= request.fullName %>">delete</i></a>
+                <a class="secondary-content accept" href="#" style="margin-right: 10px"><i
+                            data-email="<%= request.email %>"  data-name="<%= request.fullName %>" class="material-icons">send</i></a>
+            </div>
+        </li>
+        <% }); } %>
+    </ul>
+</div>

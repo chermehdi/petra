@@ -1,0 +1,13 @@
+
+#display {
+    display: none;
+}
+
+.lighten {
+    font-weight: 300;
+}
+
+#addImage {
+    cursor: pointer;
+    margin-top: 15px;
+}

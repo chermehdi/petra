@@ -1,0 +1,101 @@
+<div class="col-md-10 col-sm-8 col-xs-8 main-content">
+    <!-- Insert Content Here -->
+    <div class="welcom-header">
+        <h1> Welcom to your Dashboard </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading grey">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-laptop fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="tests"><%= testsCount %></div>
+                            <div> passed tests !</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading grey">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-book fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="lessons"><%= lessonsCount %></div>
+                            <div> passed lessons !</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading grey">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-spinner fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge" id="progression"><%= progress %>%</div>
+                            <div> Progress </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Content -->
+    <div class="row">
+        <% for (let lesson of lessons) { %>
+        <div class="col-md-4">
+            <a class="blank" data-type="lessons" href="<%= lesson.path + '/' + lesson.originalName %>"
+               data-name="<%= lesson.name %>" target="_blank">
+                <div class="panel panel-primary">
+                    <div class="panel-heading yellow">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-book fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge"> <%= lesson.name.length > 16 ? lesson.name.substr(0, 16) + ' ...' : lesson.name %></div>
+                                <div> <%= lesson.author %> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% } %>
+    </div>
+
+    <div class="row">
+        <% for (let test of tests) { %>
+        <div class="col-md-4">
+            <a class="blank" data-type="tests" href="<%= test.path + '/' + test.originalName %>"
+               data-name="<%= test.name %>" target="_blank">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-book fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge"> <%= test.name.length > 16 ? test.name.substr(0, 16) + ' ...' : test.name %></div>
+                                <div> <%= test.author %> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <% } %>
+    </div>
+</div>

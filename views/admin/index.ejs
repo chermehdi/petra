@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Admin Dashboard </title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/palette.css">
+    <% if(page === 'partials/lessons' || page === 'partials/tests') { %>
+    <link rel="stylesheet" href="css/lessons.css">
+    <% } %>
+    <% if(page === 'partials/list') { %>
+    <link rel="stylesheet" href="css/list.css">
+    <% } %>
+    <% if(page === 'partials/chat'){ %>
+    <link rel="stylesheet" href="css/chat.css">
+    <style>
+        .container {
+            width: 90%;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .chat-panel {
+            margin-top: 40px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+    </style>
+    <% } %>
+
+</head>
+<body>
+<ul id="slide-out" class="side-nav">
+    <li>
+        <div class="userView">
+            <div class="background">
+                <img src="images/mt.jpg">
+            </div>
+            <a href="#!user"><img class="circle" src="images/man.png"></a>
+            <a href="#!name"><span class="white-text name" id="username"><%= name %></span></a>
+            <a href="#!email"><span class="white-text email">mohamed.marjan@gmail.com</span></a>
+        </div>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <li><a href="/admin" class="waves-effect waves-cyan"> <i class="material-icons">dashboard</i> Dashboard </a></li>
+    <li><a href="/admin/lessons" class="waves-effect waves-cyan"> <i class="material-icons">library_books</i> Lessons
+        </a></li>
+    <li><a href="/admin/tests" class="waves-effect waves-cyan"> <i class="material-icons">toc </i> Tests </a></li>
+    <li><a href="/admin/list" class="waves-effect waves-cyan"> <i class="material-icons">view_list</i> Students </a>
+    </li>
+    <li>
+        <a href="/admin/requests" class="waves-effect waves-cyan"> <i class="material-icons">recent_actors</i> Requests
+            <% if(count !== 0) { %>
+            <span class="new badge"><%= count %></span>
+            <% } %>
+        </a>
+    </li>
+</ul>
+<header id="header">
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/admin/chat"> <i class="material-icons left">chat</i>Messages</a></li>
+                <li><a href="#" class="dropdown-button" data-beloworigin="true" data-activates="dropdown">Marjan <i
+                                class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+
+            <ul id="dropdown" class="dropdown-content">
+                <li><a href="/admin/disconnect"> <i class="material-icons">power_settings_new</i> Deconnexion </a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <!-- main content start -->
+
+    <%- include(page) %>
+
+    <!-- main content end -->
+</div>
+<div id="snackbar"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/jquery.js"></script>
+<% if (page === 'partials/home') { %>
+<script src="js/admin.js"></script>
+<script src="js/getScreenId.js"></script>
+<script src="js/adapter.js"></script>
+<script src="js/adminScreen.js"></script>
+<% } %>
+<script src="js/materialize.js"></script>
+<script src="js/snackbar.js"></script>
+<% if (page === 'partials/lessons') { %>
+<script src="js/lessons.js"></script>
+<% } %>
+<% if (page === 'partials/tests') { %>
+<script src="js/tests.js"></script>
+<% } %>
+
+<% if(page === 'partials/chat') { %>
+<script src="js/chat.js"></script>
+<% } %>
+<% if(page === 'partials/requests') { %>
+<script src="js/request.js"></script>
+<% } %>
+<script>
+    $('.button-collapse').sideNav({
+            menuWidth: 300, // Default is 300
+            edge: 'left', // Choose the horizontal origin
+            closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+            draggable: true // Choose whether you can drag to open on touch screens
+        }
+    );
+    $(document).ready(function () {
+        Materialize.updateTextFields();
+    });
+    <% if (page === 'partials/lessons' || page === 'partials/tests') { %>
+    let toggeled = true;
+    let $image = $('#addImage');
+    let $display = $('#display');
+
+    $image.click((e) => {
+        if (toggeled) {
+            $image.css({'transform': 'rotate(135deg)', 'transition': 'transform 0.2s linear'});
+            $display.slideDown('fast', () => {
+                console.log("slided down")
+            });
+            toggeled ^= true;
+        } else {
+            $image.css({'transform': 'rotate(0deg)', 'transition': 'transform 0.2s linear'});
+            $display.slideUp('fast', () => {
+                console.log("slided Up")
+            });
+            toggeled ^= true;
+        }
+    })
+    <% } %>
+    <% if (page === 'partials/home') { %>
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%', // Ending top style attribute
+            ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                getUserMedia({video: true}, (stream) => {
+                    createPeerConnection();
+                    isCaller = true;
+                    peerConnection.addStream(stream);
+                    call();
+                }, (err) => {
+                    console.log('could notget user media');
+                })
+            },
+            complete: function () {
+                console.log('closed ');
+                video.pause();
+            } // Callback for Modal close
+        }
+    );
+    <% } %>
+
+
+    // a promise base XMLHttp request it may need polyfill as its not supported by all the browsers (yet :D)
+
+    function deleteUser(name) {
+        return new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                console.log(xhr.readyState)
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    resolve("deleted from student list");
+                }
+            }
+            xhr.open('DELETE', '/admin/delete/student/' + name, true);
+            xhr.send(null);
+        })
+    }
+    // selecting the delete links
+    let deleteLinks = document.querySelectorAll('.delete');
+
+
+    // attaching event listeners on the delete links
+    for (let link of deleteLinks) {
+        let ll = link;
+        link.addEventListener('click', (e) => {
+            let name = ll.dataset.name;
+            $target = $(ll.parentElement.parentElement.parentElement.parentElement);
+            deleteUser(name)
+                .then(function (msg) {
+                    showSnackBar(msg, '#4CAF50');
+                    $target.hide('slow', function () {
+                        $target.remove();
+                    });
+                })
+                .catch(function (msg) {
+                    showSnackBar('an error has occured', '#f44336');
+                })
+        })
+    }
+
+</script>
+</body>
+</html>
