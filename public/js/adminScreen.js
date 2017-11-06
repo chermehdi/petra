@@ -2,7 +2,7 @@
  * For the application to work the hosts should install a plugin called
  *  < Screen Capturing >
  * @type {Element}
- * @authors {MaxHeap, ChaimaeBen}
+ * @authors {MaxHeap, RimasBen}
  */
 
 // let requestButton = document.getElementById('feed');

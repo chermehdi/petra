@@ -1,3 +1,7 @@
+/**
+ * @authors {MaxHeap, RimasBen}
+ */
+
 let socket = io.connect();
 let spinner = document.getElementById('spinner');
 let html = $('#wrapper-removed').html();
