@@ -1,9 +1,9 @@
 let express = require('express');
 let application = express();
 
-let studentapp = require('./app/student');
-let adminapp = require('./app/admin');
-let mongoose = require('mongoose');
+const studentapp = require('./app/student');
+const adminapp = require('./app/admin');
+const mongoose = require('mongoose');
 
 let server = require('http').createServer(application);
 let io = require('socket.io').listen(server);
